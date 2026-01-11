@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Sayangku 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+body{
+    min-height:100vh;
+    background:url('Bg pink.jpg') no-repeat center/cover;
+}
+
+/* OPENING */
+#opening{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,192,203,.25);
+}
+
+.btn-love{
+    width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle at top,#ff6fae,#ff3d8b);
+    color:#fff;font-size:1.2em;font-weight:600;
+    border:none;cursor:pointer;
+    box-shadow:0 0 30px rgba(255,61,139,.6);
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{50%{transform:scale(1.08)}}
+
+/* MAIN */
+#mainContent{display:none;padding:35px;text-align:center;animation:fadeIn 1.5s forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+
+.card{
+    background:rgba(255,255,255,.75);
+    border-radius:20px;
+    padding:25px;margin-bottom:20px;
+    color:#b0124a;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+/* TIMELINE */
+.timeline-month{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+.timeline-month button{
+    padding:10px;border:none;border-radius:15px;
+    background:#ff4d88;color:#fff;
+    font-weight:600;cursor:pointer;
+}
+
+/* GALERI */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    gap:15px;
+}
+.gallery img{
+    width:100%;height:150px;object-fit:cover;
+    border-radius:15px;cursor:pointer;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+/* HEART */
+.heart{
+    position:fixed;top:-10px;font-size:20px;
+    animation:fall linear forwards;
+}
+@keyframes fall{to{transform:translateY(110vh);opacity:0}}
+
+.bottom-btn{
+    padding:15px 20px;border:none;border-radius:20px;
+    background:#ff3d8b;color:white;
+    font-size:1em;font-weight:600;
+    cursor:pointer;
+}
+
+.choice-btn{
+    margin:10px;
+    padding:12px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d88;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" src="Taylor.mp3" loop></audio>
+<audio id="voiceNote" src="Rekaman.mp3"></audio>
+
+<div id="opening">
+    <button class="btn-love" onclick="openLove()">tekan tombol ini<br>sayang 💗</button>
+</div>
+
+<div id="mainContent">
+
+<div class="card">
+    <h1>Happy 1st Anniversary ❤️</h1>
+    <h3>From your lovely, Farhan
+    to
+    my endless love, Rica</h3>
+    
+    
+    <p>Haloo sayang..
+    Sayang happy anniversary yaaaa, terima kasih telah menjadi bagian dalam hidupku 🤍</p>
+</div>
+
+<div class="card">
+    <h2>🗓Kisah Kita</h2>
+    <div class="timeline-month">
+        <button onclick="openLetter('januari')">Januari</button>
+        <button onclick="openLetter('februari')">Februari</button>
+        <button onclick="openLetter('maret')">Maret</button>
+        <button onclick="openLetter('april')">April</button>
+        <button onclick="openLetter('mei')">Mei</button>
+        <button onclick="openLetter('juni')">Juni</button>
+        <button onclick="openLetter('juli')">Juli</button>
+        <button onclick="openLetter('agustus')">Agustus</button>
+        <button onclick="openLetter('september')">September</button>
+        <button onclick="openLetter('oktober')">Oktober</button>
+        <button onclick="openLetter('november')">November</button>
+        <button onclick="openLetter('desember')">Desember</button>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📸 Galeri Kenangan</h2>
+    <div class="gallery">
+        <img src="Foto-1.jpg">
+        <img src="Foto-2.jpg">
+        <img src="Foto-3.jpg">
+        <img src="Foto-4.jpg">
+    </div>
+</div>
+
+<div class="card">
+    <button id="voiceBtn" class="bottom-btn" onclick="playVoice()">
+        klik ini dong sayang
+    </button>
+    <p id="voiceHint" style="
+    margin-top:10px;
+    font-size:0.85em;
+    opacity:0.8;
+">
+  Ini voice note sayang, naikkan sedikit volumenya yaa 🤍
+</p>
+</div>
+
+</div>
+
+<!-- MODAL SURAT -->
+<div class="modal" id="letterModal" onclick="this.style.display='none'">
+  <div class="card">
+    <p id="letterText" style="white-space:pre-line"></p>
+  </div>
+</div>
+
+<!-- MODAL LAMARAN -->
+<div class="modal" id="proposalModal">
+  <div class="card">
+    <h1>💍</h1>
+    <h2>Aku nggak janji sempurna…</h2>
+    <p>
+      Tapi aku janji selalu berusaha jadi yang terbaik.<br><br>
+      <strong>Mau menikah denganku, sayang?</strong>
+    </p>
+    <p style="font-size:.9em;opacity:.8">Harus mau ya 🤍</p>
+    <br>
+    <button class="choice-btn" onclick="accept()">IYA</button>
+    <button class="choice-btn" onclick="accept()">MAU</button>
+  </div>
+</div>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const voice = document.getElementById("voiceNote");
+
+/* === SURAT BULANAN (ASLI TANPA DIUBAH) === */
+const letters={
+ januari:"Januari 🤍\n Awal mula hubungan kita dimulai, masa masa kita masih backstreet nih mau ketemuan aja harus sembunyi-sembunyi kayak takut banget ketahuan haha.... ingat ga kalau kita mau ngasih makanan satu sama lain kita bakal taruh di pantry habis itu kita chatting untuk ngambil, dan ingat ini ga waktu kita makan siang di mi ayam sebelah? kita ketahuan buhan sayang wkwk nah kemudian muka sayang memerah pas ketahuan dan buru buru ngusir aku buat pergi, Ya Allah lucu banget kalau itu semua di ingat, januari itu bulan dimana kita mulai mengenal satu sama lain \n masih jaim jaim nya kita waktu itu haha.",
+ februari:"Februari 💕\nKita mulai sering ketemuan dan jalan bareng dan hubungan kita udah ditau  sama kebanyakan orang kantor haha, februari itu menurutku love bombing era karena banyak sekali hal hal yang buat diri kita makin dekat satu sama lain kita udah mulai call dan vc, makan bareng tanpa takut ketahuan, sayang ku belikan nailong dan juga first kiss dong haha... pokoknya kita udah ga jaim jaim lagi.",
+ maret:"Maret 🌸\nHubungan kita tetap terjaga seperti biasa namun di bulan ini diriku mulai sibuk kembali dengan kerjaan ku yang padat dan ga bisa meluangkan waktu buat sayang, saking sempitnya waktu yang ku punya kita ga pernah bukber... sedih bangettt :' dan di bulan ini sayang untuk pertama kalinya ngambek sama akuuu huhuuu... pokoknya bulan puasa runyam banget wkwkw tapiii walaupun gitu kita sering war takjil bareng dan di saat lebaran kita bertamu ke rumah satu sama lain... cieee udah mulai dikenalin ke keluarga masing masing nih yee\n prikitiw..",
+ april:"April 🌷di bulan ini hubungan kita berjalan baik seperti biasa, yaa walaupun sayang sempat merasa kesepian karena waktu itu aku lebih memilih fokus ke kerjaan daripada ke sayang, namum pada saat itu kerjaan ku kembali terhandle dan kita sering ngedate lagi yuhuuuu",
+ mei:"Mei 💖\nkita mengawali bulan ini dengan concert dateeee dan di bulan ini kita masih sering ngedate tapi yaaa terkadang ada aja tingkah ku yang bikin sayang kesel aowkaowkawok.",
+ juni:"Juni 🌤️\n hubungan kita dibulan ini makin menguat karena orang tua ku berkunjung ke rumah sayang untuk pertama kalinya, pertemuan besan nihh cihuyyy, pokoknya di bulan ini kita masih sering ngedate tapiiii sayang sempat disita sama mbak amel di balikpapan.. ih keselll pacarku cuma buat aku aja mbak amelll ga boleh dipinjam pinjammm .",
+ juli:"Juli 🎉\nDi bulan ini kerjaan sudah mulai mengambil alih diriku lagi dan begitupun sayang juga mulai sibuk, tapi kita masih berusaha menyempatkan diri untuk ketemu walaupun itu cuma jalan sehabis pulang kerja",
+ agustus:"Agustus 🇮🇩\ndi bulan ini kita mulai sering berantem entah itu karena selisih paham atau tindakanku yang salah huhu.... tapi kita kembali mengevaluasi diri seperti biasa",
+ september:"September 🍃\nSeptember, awal bulan yang seharusnya manis bagi sayang namun aku justru memberikan rasa pahit karena aku merusak hari ulang tahun sayang kemudian beberapa hari berikutnya aku meninggalkan jauh sayang di jalanan dalam kondisi mengebut, hal hal tersebut membuat sayang  marah dan sedih karena tindakanku dan dari diriku juga menahan rasa lelah dan kesal yang selama ini ku pendam, kita hampir meledak pada saat itu akan tetapi kita berusaha menurunkan ego masing-masing dan sekali lagi kita menyelamatkan hubungan yang pada saat itu sudah berjalan setengah tahun, bulan september menurutku rasanya campur aduk karena ada tawa, sedih, dan marah benar benar banyak pelajaran dari bulan ini",
+ oktober:"Oktober 🎃\nSetelah banyaknya kejadian kita saling berusaha memahami, saling menguatkan, dan saling menjaga satu sama lain agar hubungan ini tetap terjaga. \n Di bulan ini setelah sekian tahun lamanya... ulang tahun ku dirayakan, yap sekali lagi dirayakan.. dirayakan oleh wanita yang ku sayangi, aku teramat bersyukur dan berterima kasih telah diberikan wanita sebaik dan setulus ini.",
+ november:"November 🍂\nDi bulan ini aku sedang dalam keadaan super sibuk sehingga kita tidak bisa ngedate di weekend seperti bulan bulan sebelmunya,\n sempat terjadi percekcokan kecil diantara kita dikarenakan kita tidak bisa menyesuaikan jadwal date sehingga kita berantem, namun seperti kebiasaan baik kita, kita berusaha untuk berbicara dan mengungkapkan apa yang mengganjal dalam hati sehingga kita bisa saling memaafkan.",
+ desember:"Desember 🎄\nMakin kesini kita makin liar.. eh salah.. kita makin harmonis kita sudah memahami satu sama lain dan berusaha menurunkan ego sehingga jika ada permasalahan kita cepat untuk meredamnya.\ndan di bulan ini juga kita mengakhiri tahun 2025 yang penuh dengan tawa dan linangan air mata dan bersiap menuju langkah yang lebih serius di tahun 2026 ❤️"
+};
+
+/* OPENING */
+function openLove(){
+  bgMusic.play();
+  document.getElementById("opening").style.display="none";
+  document.getElementById("mainContent").style.display="block";
+  for(let i=0;i<20;i++) setTimeout(createHeart,i*300);
+}
+
+/* HEART */
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration="4s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+}
+
+/* SURAT */
+function openLetter(m){
+  document.getElementById("letterText").innerText=letters[m];
+  document.getElementById("letterModal").style.display="flex";
+}
+
+/* VOICE NOTE */
+function playVoice(){
+  const btn=document.getElementById("voiceBtn");
+  const hint=document.getElementById("voiceHint");
+
+  btn.innerText="lagi dengerin kamu 🤍";
+  btn.disabled=true;
+  hint.innerText="Siap yaa... 🤍";
+
+  let vol=bgMusic.volume;
+  const fade=setInterval(()=>{
+    if(vol>0.05){
+      vol-=0.05;
+      bgMusic.volume=vol;
+    }else{
+      clearInterval(fade);
+      bgMusic.pause();
+    }
+  },200);
+
+  setTimeout(()=>voice.play(),5000);
+
+  voice.onended=()=>{
+    document.getElementById("proposalModal").style.display="flex";
+  };
+}
+
+/* ACCEPT */
+function accept(){
+  alert("💖 YEAYYYY NIKAHIN BIDADARIII 😭💍");
+}
+</script>
+
+</body>
+</html>
